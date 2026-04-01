@@ -15,8 +15,10 @@ void posicionamento() //função para o posicionamento
       }
     }
 
-    int x_nv1 = 2 , y_nv1 = 2;  //posição inicial do navio 1 (horizontal)
+    int x_nv1 = 7 , y_nv1 = 3;  //posição inicial do navio 1 (horizontal)
     int x_nv2 = 7 , y_nv2 = 7; //posição inicial do navio 2 (vertical)
+    int x_nv3 = 0 , y_nv3 = 0; //posição inicial do navio 3 (diagonal principal)
+    int x_nv4 = 0, y_nv4 = 9; //posição inicial do navio 4 (diagonal secundária)
     
     for(int i = 0; i < ship_size; i++) //vamos posicionar e marcar o navio horizontal
     {
@@ -28,15 +30,25 @@ void posicionamento() //função para o posicionamento
         matriz_tabuleiro[x_nv2 + i][y_nv2] = 3;
     }
 
+    for(int i = 0; i < ship_size; i++)
+    {
+        matriz_tabuleiro [x_nv3 + i][y_nv3 + i] = 3; //somando em ambos os índices, garante que seja na diagonal
+    }
+    
+    for(int i = 0; i < ship_size; i++)
+    {
+        matriz_tabuleiro[x_nv4 + i] [y_nv4 - i] = 3; //diminuindo em ambos os índices, garante que seja na diagonal secundária
+    }
+
 }
 
 void apresentar()
 
 {
-    printf("_-_A B C D E F G H I J\n"); //os _ e - são para alinhar
+    printf("_-_A B C D E F G H I J\n");
     for(int i = 0; i < SIZE; i++)
     {
-        int a = i;
+        
         switch (i)
         {
         case 0:
